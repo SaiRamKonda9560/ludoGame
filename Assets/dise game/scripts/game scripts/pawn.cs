@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class pawn : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class pawn : MonoBehaviour
     public SpriteRenderer SpriteRendererSelection;
     public ludoplaceholder ludoplaceholder;
     public path restPath;
+    public UnityEvent onStep;
     public pawnInfo pawnInfo
     {
         get
@@ -152,6 +154,7 @@ public class pawn : MonoBehaviour
     {
         
     }
+    public AudioClip onStepPlayAudioClip;
     private void FixedUpdate()
     {
         if (movingSettings.moving)
@@ -165,6 +168,11 @@ public class pawn : MonoBehaviour
                 {
                     //reached
                     movingSettings.path.RemoveAt(0);
+                    onStep.Invoke();
+                    if (onStepPlayAudioClip)
+                    {
+                        audioSpaner.span(onStepPlayAudioClip);
+                    }
                 }
                 else
                 {

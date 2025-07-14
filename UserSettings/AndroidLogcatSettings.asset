@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "4TDQZH75ONUW7L5T",
+    "m_SelectedDeviceId": "1377418006001BY",
     "m_SelectedProcess": {
-        "deviceId": "4TDQZH75ONUW7L5T",
+        "deviceId": "1377418006001BY",
         "name": "com.UnityTechnologies.com.unity.template.urpblank",
-        "processId": 26797,
+        "processId": 17539,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -12,18 +12,48 @@
             "deviceId": "4TDQZH75ONUW7L5T",
             "name": "com.UnityTechnologies.com.unity.template.urpblank",
             "processId": 23150,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "4TDQZH75ONUW7L5T",
             "name": "com.UnityTechnologies.com.unity.template.urpblank",
             "processId": 25622,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "4TDQZH75ONUW7L5T",
             "name": "com.UnityTechnologies.com.unity.template.urpblank",
             "processId": 26797,
+            "exited": true
+        },
+        {
+            "deviceId": "4TDQZH75ONUW7L5T",
+            "name": "com.UnityTechnologies.com.unity.template.urpblank",
+            "processId": 18172,
+            "exited": true
+        },
+        {
+            "deviceId": "4TDQZH75ONUW7L5T",
+            "name": "com.UnityTechnologies.com.unity.template.urpblank",
+            "processId": 20663,
+            "exited": false
+        },
+        {
+            "deviceId": "4TDQZH75ONUW7L5T",
+            "name": "com.UnityTechnologies.com.unity.template.urpblank",
+            "processId": 25308,
+            "exited": false
+        },
+        {
+            "deviceId": "1377418006001BY",
+            "name": "com.UnityTechnologies.com.unity.template.urpblank",
+            "processId": 16061,
+            "exited": true
+        },
+        {
+            "deviceId": "1377418006001BY",
+            "name": "com.UnityTechnologies.com.unity.template.urpblank",
+            "processId": 17539,
             "exited": false
         }
     ],

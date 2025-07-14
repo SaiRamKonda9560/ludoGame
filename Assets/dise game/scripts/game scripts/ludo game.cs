@@ -190,7 +190,6 @@ public class ludogame : MonoBehaviour
                         dice.diceData.isMyTurn = true;
                         if (dice.canRoll())
                         {
-                            dice.Button.image.color = Color.white;
                         }
                         if (dice.diceData.isSelecting)
                         {
@@ -201,7 +200,6 @@ public class ludogame : MonoBehaviour
                     {
                         //other player turn
                         dice.diceData.isMyTurn = false;
-                        dice.Button.image.color = Color.gray;
                     }
 
 

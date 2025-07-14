@@ -12,6 +12,7 @@ public class nakamaClient : MonoBehaviour
     void Start()
     {
         //connetToServer();
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
     public IClient client;
     public ISession session;

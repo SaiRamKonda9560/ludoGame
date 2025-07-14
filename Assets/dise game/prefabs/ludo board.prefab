@@ -2945,7 +2945,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 4.35, y: 4.35, z: 4.35}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4763397479164866046}
@@ -3086,7 +3086,7 @@ MonoBehaviour:
   Turn: 0
   rollDiseAnimation: 0
   dataJson: 
-  movingSpeed: 0.03
+  movingSpeed: 0.025
   addKill: {fileID: 0}
 --- !u!1 &6294019857587427127
 GameObject:
