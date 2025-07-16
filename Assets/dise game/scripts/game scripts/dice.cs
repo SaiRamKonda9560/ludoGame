@@ -2,15 +2,17 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class dice : MonoBehaviour
 {
+
     public diceData diceData;
     public Action<int> onDiseRolled;
     public Action<int> onDiceRolledStarted;
     public Action<int> onSelectingStarted;
-    public const float selectingDalay = 0.5f;
+    public const float selectingDalay = 0.2f;
     public Button Button;
     public List<Sprite> diceRollSprites;
     public List<Sprite> diceNumberSprites;
@@ -19,6 +21,7 @@ public class dice : MonoBehaviour
     public float animationTime;
     private bool animateDice;
     private float animationStartTime;
+    public ludogame ludogame;
     public void startRolingAnmi()
     {
         animationStartTime = Time.time;
@@ -61,7 +64,7 @@ public class dice : MonoBehaviour
             roll();
         }
     }
-    bool callingSelecting;
+    public bool callingSelecting;
     public void rolled()
     {
         diceData.isRolling = false;
@@ -78,15 +81,15 @@ public class dice : MonoBehaviour
     }
     void startSelecting()
     {
-        onSelectingStarted?.Invoke(diceData.value);
         diceData.isSelecting = true;
         callingSelecting = false;
+        onSelectingStarted?.Invoke(diceData.value);
     }
     public bool canRoll()
     {
         if (diceData.isMyTurn)
         {
-            if (diceData.isRolling || diceData.isSelecting || callingSelecting)
+            if (diceData.isRolling || diceData.isSelecting || callingSelecting || ludogame.isAnyPawnMoving)
             {
                 return false;
             }
@@ -129,4 +132,6 @@ public class dice : MonoBehaviour
             onDiceRolledStarted?.Invoke(diceData.value);
         }
     }
+
+
 }

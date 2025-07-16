@@ -1,15 +1,34 @@
 using Nakama;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ludogame : MonoBehaviour
 {
-    [Header("refferenc")]
-    public List<path> path = new List<path>();
+    public onComplectWindow onComplectWindow;
+    public List<path> gameOtherPath = new List<path>();
+    [Range(0f, 1f)]
+    public float pawnScale;
+    [Range(0f, 1f)]
+    public float movingSpeedScale = 0.03f;
+    public float movingSpeed = 0.03f;
+    public void pawn_ScaleAndSize()
+    {
+       var rectTransform = GetComponent<RectTransform>();
+        if(rectTransform != null)
+        {
+            var sizeDelta = rectTransform.sizeDelta;
+            movingSpeed = (rectTransform.lossyScale.x * sizeDelta.x)* movingSpeedScale;
+        }
+        ludoplaceholderBlue.setPawnsScale(pawnScale);
+        ludoplaceholderGreen.setPawnsScale(pawnScale);
+        ludoplaceholderYellow.setPawnsScale(pawnScale);
+        ludoplaceholderRed.setPawnsScale(pawnScale);
+
+    }
     public pawn pawnPrefab;
     public ludoplaceholder ludoplaceholderBlue;
     public ludoplaceholder ludoplaceholderRed;
@@ -28,12 +47,48 @@ public class ludogame : MonoBehaviour
     public void setNames()
     {
         int t = 0;
-        foreach (var path in path)
+        foreach (var path in gameOtherPath)
         {
             path.transform.name = t.ToString();
             t++;
         }
+        ludoplaceholderBlue.name = "blue place holder";
+        ludoplaceholderGreen.name = "green place holder";
+        ludoplaceholderYellow.name = "yellow place holder";
+        ludoplaceholderRed.name = "red place holder";
+        setNameToPlaceHolder(ludoplaceholderBlue,2);
+        setNameToPlaceHolder(ludoplaceholderGreen,28);
+        setNameToPlaceHolder(ludoplaceholderYellow,41);
+        setNameToPlaceHolder(ludoplaceholderRed,15);
+
+
     }
+
+    public void setNameToPlaceHolder(ludoplaceholder ludoplaceholder,int startIndex)
+    {
+        ludoplaceholder.placeHolderpath.Clear();
+        var paths = gameOtherPath;
+        var endIndex = startIndex-2;
+        ludoplaceholder.placeHolderpath.AddRange(paths.GetRange(startIndex, (paths.Count - startIndex)));
+        if (endIndex + 1 > 0)
+        {
+            ludoplaceholder.placeHolderpath.AddRange(paths.GetRange(0, endIndex + 1));
+        }
+        ludoplaceholder.placeHolderpath.AddRange(ludoplaceholder.innerPath);
+
+
+        ludoplaceholder.restPath1.name = (ludoplaceholder.name + " restPath 1");
+        ludoplaceholder.restPath2.name = (ludoplaceholder.name + " restPath 2");
+        ludoplaceholder.restPath3.name = (ludoplaceholder.name + " restPath 3");
+        ludoplaceholder.restPath4.name = (ludoplaceholder.name + " restPath 4");
+        for(int i = 0;i< ludoplaceholder.innerPath.Count;i++)
+        {
+            var d = ludoplaceholder.innerPath[i];
+            d.gameObject.name = "inner "+i.ToString();
+        }
+
+    }
+
     private void Start()
     {
         dice.onDiceRolledStarted += onDiceRolledStarted;
@@ -96,10 +151,26 @@ public class ludogame : MonoBehaviour
         userPresenceList = userPresenceList.OrderBy(s => s.Key).ToDictionary(pair => pair.Key, pair => pair.Value);
         spanPawns();
         ludoplaceholderBlue.onPawnMoved = onPawnMoved;
+        ludoplaceholderBlue.updatepawnData(ludoplaceholderBlue.ludoGamePlayerData);
     }
     //StartGame is called by nakama clint after match matched
     public void StartGame(nakamaClient nakamaClient)
     {
+        onComplectWindow.gameObject.SetActive(false);
+
+        ludoplaceholderBlue.ludoGamePlayerData = new ludoGamePlayerData();
+        ludoplaceholderRed.ludoGamePlayerData = new ludoGamePlayerData();
+        ludoplaceholderGreen.ludoGamePlayerData = new ludoGamePlayerData();
+        ludoplaceholderYellow.ludoGamePlayerData = new ludoGamePlayerData();
+
+        ludoplaceholderBlue.setSignal(false);
+        ludoplaceholderRed.setSignal(false);
+        ludoplaceholderGreen.setSignal(false);
+        ludoplaceholderYellow.setSignal(false);
+
+        dice.clearData();
+
+
         if (nakamaClient)
         {
             this.nakamaClient = nakamaClient;
@@ -133,7 +204,6 @@ public class ludogame : MonoBehaviour
             }
         }
     }
-    public float movingSpeed = 0.03f;
     //next Player Turn 
     public void nextPlayerTurn(bool sendDataToPlayers)
     {
@@ -161,7 +231,7 @@ public class ludogame : MonoBehaviour
 
     private void Update()
     {
-
+        pawn_ScaleAndSize();
         if (addKill != null)
         {
             var data = new gameData();
@@ -216,7 +286,7 @@ public class ludogame : MonoBehaviour
         }
         else
         {
-            sendPing();
+            //sendPing();
         }
         if (rollDiseAnimation > 0)
         {
@@ -232,37 +302,45 @@ public class ludogame : MonoBehaviour
     {
         if (dataJson != "")
         {
-            print(dataJson);
-            var gameData = JsonUtility.FromJson<gameData>(dataJson);
-            if (gameData != null)
+            try
             {
-                if (gameData.playersData != null)
+                var gameData = JsonUtility.FromJson<gameData>(dataJson);
+                if (gameData != null)
                 {
-                    foreach (var data in gameData.playersData)
+                    if (gameData.playersData != null)
                     {
-                        var userName = data.userName;
-                        if (userName == ludoplaceholderBlue.ludoGamePlayerData.userName)
+                        foreach (var data in gameData.playersData)
                         {
-                            //my data
-                            ludoplaceholderBlue.updatepawnData(data);
-                            print("myplayer data updated");
+                            var userName = data.userName;
+                            if (userName == ludoplaceholderBlue.ludoGamePlayerData.userName)
+                            {
+                                //my data
+                                ludoplaceholderBlue.updatepawnData(data);
+                                print("myplayer data updated");
+
+                            }
+                            else
+                            {
+                                ludoplaceholderGreen.updatepawnData(data);
+                                print("ludoplaceholderGreen data updated");
+
+                            }
 
                         }
-                        else
-                        {
-                            ludoplaceholderGreen.updatepawnData(data);
-                            print("ludoplaceholderGreen data updated");
-
-                        }
-
                     }
-                }
 
+                }
             }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
+
             dataJson = "";
         }
 
     }
+
     #region call backs
     public void onSelectingStarted(int value)
     {
@@ -270,6 +348,14 @@ public class ludogame : MonoBehaviour
         if(pawns.Count == 0)
         {
             nextPlayerTurn(true);
+        }
+        else if(pawns.Count == 1) 
+        {
+            var pawn = pawns[0];
+            if (pawn)
+            {
+                pawn.movePawn();
+            }
         }
     }
     public  void onSelecting()
@@ -286,9 +372,9 @@ public class ludogame : MonoBehaviour
     }
     public void onPawnMoved(pawn pawn)
     {
-        
-        if (pawn )
+        if (pawn)
         {
+            var isWin = pawn.ludoplaceholder.ludoGamePlayerData.isWin();
             var myPath = pawn.getCurrentPath();
             var allOtherPawns = new List<pawn>();
             allOtherPawns.AddRange(ludoplaceholderGreen.getAllPawns());
@@ -310,9 +396,17 @@ public class ludogame : MonoBehaviour
                             if (path.gameObject == myPath.gameObject)
                             {
                                 //in same path
-                                otherPawn.setValues(pawnState.dead,1);
-                                data.addPlayerData(otherPawn.ludoplaceholder.ludoGamePlayerData);
-                                killedPawns.Add(otherPawn);
+                                if (path.isSafe)
+                                {
+
+                                }
+                                else
+                                {
+                                    otherPawn.setValues(pawnState.dead, 0);
+                                    data.addPlayerData(otherPawn.ludoplaceholder.ludoGamePlayerData);
+                                    killedPawns.Add(otherPawn);
+                                    pawn.ludoplaceholder.ludoGamePlayerData.killCount++;
+                                }
                             }
                         }
                     }
@@ -321,7 +415,7 @@ public class ludogame : MonoBehaviour
 
             data.addPlayerData(ludoplaceholderBlue.ludoGamePlayerData);
             sendMessageToPlayers("data:" + JsonUtility.ToJson(data));
-            if (dice.diceData.value == 6 || killedPawns.Count > 0)
+            if (dice.diceData.value == 6 || killedPawns.Count > 0 || pawn.pawnInfo.pawnState==pawnState.complected)
             {
                 dice.diceData.isSelecting = false;
             }
@@ -347,14 +441,15 @@ public class ludogame : MonoBehaviour
         var UserId = UserPresence.UserId;
         if (userPresenceList.Count != playerCount)
         {
-            if (message == "ping")
+            if (message.StartsWith("ping:"))
             {
                 if (!userPresenceList.ContainsKey(UserId))
                 {
                     userPresenceList.Add(Username, UserPresence);
                 }
                 ludoplaceholderGreen.ludoGamePlayerData.userName = Username;
-                print("ping");
+                //dataJson = message.Substring("ping:".Length, message.Length - "ping:".Length);
+
             }
         }
         if (allConneted)
@@ -382,7 +477,8 @@ public class ludogame : MonoBehaviour
     {
         if ((Time.unscaledTime-lastPingTime) > 0.5f)
         {
-            sendMessageToPlayers("ping");
+            //sendMessageToPlayers("ping:");
+            sendMessageToPlayers("ping:"+ JsonUtility.ToJson(new gameData() { playersData=new List<ludoGamePlayerData>() { ludoplaceholderBlue.ludoGamePlayerData} }));
             lastPingTime = Time.unscaledTime;
         }
     }
@@ -410,9 +506,26 @@ public class ludogame : MonoBehaviour
         {
             foreach (var userPresence in matchPresenceEvent.Leaves)
             {
-                if (userPresenceList.ContainsKey(userPresence.Username))
+                var Username = userPresence.Username;
+                if (userPresenceList.ContainsKey(Username))
                 {
-                    userPresenceList.Remove(userPresence.Username);
+                    userPresenceList.Remove(Username);
+                    if(Username == ludoplaceholderGreen.ludoGamePlayerData.userName)
+                    {
+                        ludoplaceholderGreen.setSignal(true);
+                    }
+                    if (Username == ludoplaceholderRed.ludoGamePlayerData.userName)
+                    {
+                        ludoplaceholderRed.setSignal(true);
+                    }
+                    if (Username == ludoplaceholderBlue.ludoGamePlayerData.userName)
+                    {
+                        ludoplaceholderBlue.setSignal(true);
+                    }
+                    if (Username == ludoplaceholderYellow.ludoGamePlayerData.userName)
+                    {
+                        ludoplaceholderYellow.setSignal(true);
+                    }
                     Debug.Log("player disconneted "+ userPresence.Username);
                 }
             }
@@ -450,6 +563,7 @@ public class ludogame : MonoBehaviour
     }
     #endregion
 }
+[Serializable]
 public class gameData
 {
     public List<ludoGamePlayerData> playersData;
@@ -466,11 +580,21 @@ public class gameData
 public struct ludoGamePlayerData
 {
     public string userName;
+    public int killCount;
     public diceData diceData;
     public pawnInfo pawnInfo1;
     public pawnInfo pawnInfo2;
     public pawnInfo pawnInfo3;
     public pawnInfo pawnInfo4;
+    public bool isWin()
+    {
+        return
+        (pawnInfo1.pawnState == pawnState.complected &&
+        pawnInfo2.pawnState == pawnState.complected &&
+        pawnInfo3.pawnState == pawnState.complected &&
+        pawnInfo4.pawnState == pawnState.complected
+        );
+    }
 }
 [Serializable]  
 public struct diceData
@@ -485,20 +609,7 @@ public struct diceData
 public struct pawnInfo
 {
     public pawnState pawnState;
-    public int pos;
-    public void setValues(pawnState pawnState,int pos)
-    {
-        this.pawnState = pawnState;
-        this.pos = pos;
-    }
-    public void setPawnState(pawnState pawnState)
-    {
-        this.pawnState = pawnState;
-    }
-    public void setPos(int pos)
-    {
-        this.pos = pos;
-    }
+    public int step;
 }
 public enum pawnState
 {

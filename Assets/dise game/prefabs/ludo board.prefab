@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 7449244409634898213}
   - component: {fileID: 675005969105028380}
   m_Layer: 0
-  m_Name: place holder (2)
+  m_Name: blue place holder restPath 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -543,7 +543,7 @@ GameObject:
   - component: {fileID: 6999213061002717693}
   - component: {fileID: 750792612322949069}
   m_Layer: 0
-  m_Name: place holder (3)
+  m_Name: green place holder restPath 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -626,19 +626,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e4ab465689c1dc43bd8c4f1027ac0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spanIndex: 28
-  endIndex: 0
-  InsideOffest: -2
-  localPosition: 0
+  ludogame: {fileID: 0}
+  color: {r: 0, g: 0.5686275, b: 0.16078432, a: 1}
   restPath1: {fileID: 353277842367313158}
   restPath2: {fileID: 3914672160920208366}
   restPath3: {fileID: 242670020169145017}
   restPath4: {fileID: 750792612322949069}
-  pawn1: {fileID: 0}
-  pawn2: {fileID: 0}
-  pawn3: {fileID: 0}
-  pawn4: {fileID: 0}
-  color: {r: 0, g: 0.5686275, b: 0.16078432, a: 1}
   ludoGamePlayerData:
     userName: 
     diceData:
@@ -648,17 +641,16 @@ MonoBehaviour:
       value: 0
     pawnInfo1:
       pawnState: 0
-      pos: 0
+      step: 0
     pawnInfo2:
       pawnState: 0
-      pos: 0
+      step: 0
     pawnInfo3:
       pawnState: 0
-      pos: 0
+      step: 0
     pawnInfo4:
       pawnState: 0
-      pos: 0
-  ludogame: {fileID: 0}
+      step: 0
   innerPath:
   - {fileID: 9133496191636243796}
   - {fileID: 613110139828697337}
@@ -666,7 +658,64 @@ MonoBehaviour:
   - {fileID: 4423950133929026548}
   - {fileID: 1521561675667766207}
   - {fileID: 3491738791146238522}
-  list: []
+  placeHolderpath:
+  - {fileID: 4099461971490418748}
+  - {fileID: 6527958818366059099}
+  - {fileID: 5181687045542811344}
+  - {fileID: 630881955480386541}
+  - {fileID: 2791301037152945136}
+  - {fileID: 1275676332172865600}
+  - {fileID: 2258619247731535556}
+  - {fileID: 1290764701126127292}
+  - {fileID: 569864944542976882}
+  - {fileID: 4603938296988049047}
+  - {fileID: 190674246055499136}
+  - {fileID: 3304424841399273776}
+  - {fileID: 2706675106963970624}
+  - {fileID: 5455255990821598481}
+  - {fileID: 6234140670822296341}
+  - {fileID: 2059142847353953521}
+  - {fileID: 4068171522702166034}
+  - {fileID: 8306337752566885739}
+  - {fileID: 8359092344271469747}
+  - {fileID: 5972608633412614992}
+  - {fileID: 5474159366718030295}
+  - {fileID: 6876675921993168071}
+  - {fileID: 8501026494530080902}
+  - {fileID: 8381784459519518803}
+  - {fileID: 5247968591626046870}
+  - {fileID: 6094349141439606262}
+  - {fileID: 91489116173966753}
+  - {fileID: 4399558655362388176}
+  - {fileID: 1971664227277800969}
+  - {fileID: 7701432014500294446}
+  - {fileID: 1112905051465434946}
+  - {fileID: 2400355794154970731}
+  - {fileID: 5917616700432275135}
+  - {fileID: 5248236559989175368}
+  - {fileID: 2445918341558414281}
+  - {fileID: 4181281725705943177}
+  - {fileID: 5361705067001662252}
+  - {fileID: 7774257814529379424}
+  - {fileID: 4488310732963965550}
+  - {fileID: 563031874607068150}
+  - {fileID: 5855304514868343208}
+  - {fileID: 3170769602751453202}
+  - {fileID: 1619061324408136299}
+  - {fileID: 7382828619751123279}
+  - {fileID: 4455858704176596923}
+  - {fileID: 789825467487625849}
+  - {fileID: 4871510861681200076}
+  - {fileID: 8747158490446091831}
+  - {fileID: 5468460320352010883}
+  - {fileID: 8199574640551293237}
+  - {fileID: 6137444141308988224}
+  - {fileID: 9133496191636243796}
+  - {fileID: 613110139828697337}
+  - {fileID: 6103499724269147772}
+  - {fileID: 4423950133929026548}
+  - {fileID: 1521561675667766207}
+  - {fileID: 3491738791146238522}
 --- !u!1 &1192329353124479129
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,7 +895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a448c830d860e449098f4899eba03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSafe: 0
+  isSafe: 1
 --- !u!1 &1448688211257479552
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,7 +940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a448c830d860e449098f4899eba03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSafe: 0
+  isSafe: 1
 --- !u!1 &1449886331453807431
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,7 +1132,7 @@ GameObject:
   - component: {fileID: 8153588210133849491}
   - component: {fileID: 6633810767984983798}
   m_Layer: 0
-  m_Name: place holder (1)
+  m_Name: red place holder restPath 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1251,7 +1300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a448c830d860e449098f4899eba03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSafe: 0
+  isSafe: 1
 --- !u!1 &2004061685219067988
 GameObject:
   m_ObjectHideFlags: 0
@@ -1668,7 +1717,7 @@ GameObject:
   - component: {fileID: 4885299293732861225}
   - component: {fileID: 4946607827001452122}
   m_Layer: 0
-  m_Name: place holder
+  m_Name: red place holder restPath 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1713,7 +1762,7 @@ GameObject:
   - component: {fileID: 2657058182395910964}
   - component: {fileID: 3316543460670889878}
   m_Layer: 0
-  m_Name: place holder (1)
+  m_Name: blue place holder restPath 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1791,7 +1840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a448c830d860e449098f4899eba03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSafe: 0
+  isSafe: 1
 --- !u!1 &3480634026713218121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1803,7 +1852,7 @@ GameObject:
   - component: {fileID: 2891165100183911632}
   - component: {fileID: 8247840344703508395}
   m_Layer: 0
-  m_Name: place holder
+  m_Name: yellow place holder restPath 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1886,19 +1935,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e4ab465689c1dc43bd8c4f1027ac0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spanIndex: 15
-  endIndex: 0
-  InsideOffest: -2
-  localPosition: 0
+  ludogame: {fileID: 0}
+  color: {r: 0.8078432, g: 0.015686275, b: 0.007843138, a: 1}
   restPath1: {fileID: 4946607827001452122}
   restPath2: {fileID: 7633562797546101370}
   restPath3: {fileID: 6633810767984983798}
   restPath4: {fileID: 2493119686444878005}
-  pawn1: {fileID: 0}
-  pawn2: {fileID: 0}
-  pawn3: {fileID: 0}
-  pawn4: {fileID: 0}
-  color: {r: 0.8078432, g: 0.015686275, b: 0.007843138, a: 1}
   ludoGamePlayerData:
     userName: 
     diceData:
@@ -1908,17 +1950,16 @@ MonoBehaviour:
       value: 0
     pawnInfo1:
       pawnState: 0
-      pos: 0
+      step: 0
     pawnInfo2:
       pawnState: 0
-      pos: 0
+      step: 0
     pawnInfo3:
       pawnState: 0
-      pos: 0
+      step: 0
     pawnInfo4:
       pawnState: 0
-      pos: 0
-  ludogame: {fileID: 0}
+      step: 0
   innerPath:
   - {fileID: 2468598434389827682}
   - {fileID: 7030297021171296307}
@@ -1926,7 +1967,64 @@ MonoBehaviour:
   - {fileID: 8708029373553101592}
   - {fileID: 9146400515780317130}
   - {fileID: 1700697670135845748}
-  list: []
+  placeHolderpath:
+  - {fileID: 563031874607068150}
+  - {fileID: 5855304514868343208}
+  - {fileID: 3170769602751453202}
+  - {fileID: 1619061324408136299}
+  - {fileID: 7382828619751123279}
+  - {fileID: 4455858704176596923}
+  - {fileID: 789825467487625849}
+  - {fileID: 4871510861681200076}
+  - {fileID: 8747158490446091831}
+  - {fileID: 5468460320352010883}
+  - {fileID: 8199574640551293237}
+  - {fileID: 6137444141308988224}
+  - {fileID: 8548191389837355507}
+  - {fileID: 4099461971490418748}
+  - {fileID: 6527958818366059099}
+  - {fileID: 5181687045542811344}
+  - {fileID: 630881955480386541}
+  - {fileID: 2791301037152945136}
+  - {fileID: 1275676332172865600}
+  - {fileID: 2258619247731535556}
+  - {fileID: 1290764701126127292}
+  - {fileID: 569864944542976882}
+  - {fileID: 4603938296988049047}
+  - {fileID: 190674246055499136}
+  - {fileID: 3304424841399273776}
+  - {fileID: 2706675106963970624}
+  - {fileID: 5455255990821598481}
+  - {fileID: 6234140670822296341}
+  - {fileID: 2059142847353953521}
+  - {fileID: 4068171522702166034}
+  - {fileID: 8306337752566885739}
+  - {fileID: 8359092344271469747}
+  - {fileID: 5972608633412614992}
+  - {fileID: 5474159366718030295}
+  - {fileID: 6876675921993168071}
+  - {fileID: 8501026494530080902}
+  - {fileID: 8381784459519518803}
+  - {fileID: 5247968591626046870}
+  - {fileID: 6094349141439606262}
+  - {fileID: 91489116173966753}
+  - {fileID: 4399558655362388176}
+  - {fileID: 1971664227277800969}
+  - {fileID: 7701432014500294446}
+  - {fileID: 1112905051465434946}
+  - {fileID: 2400355794154970731}
+  - {fileID: 5917616700432275135}
+  - {fileID: 5248236559989175368}
+  - {fileID: 2445918341558414281}
+  - {fileID: 4181281725705943177}
+  - {fileID: 5361705067001662252}
+  - {fileID: 7774257814529379424}
+  - {fileID: 2468598434389827682}
+  - {fileID: 7030297021171296307}
+  - {fileID: 8017378129363049907}
+  - {fileID: 8708029373553101592}
+  - {fileID: 9146400515780317130}
+  - {fileID: 1700697670135845748}
 --- !u!1 &3483735316971754257
 GameObject:
   m_ObjectHideFlags: 0
@@ -2151,7 +2249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a448c830d860e449098f4899eba03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSafe: 0
+  isSafe: 1
 --- !u!1 &3990551318424840698
 GameObject:
   m_ObjectHideFlags: 0
@@ -2163,7 +2261,7 @@ GameObject:
   - component: {fileID: 6691279937091888773}
   - component: {fileID: 2493119686444878005}
   m_Layer: 0
-  m_Name: place holder (3)
+  m_Name: red place holder restPath 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2523,7 +2621,7 @@ GameObject:
   - component: {fileID: 8926460017901767030}
   - component: {fileID: 242670020169145017}
   m_Layer: 0
-  m_Name: place holder (1)
+  m_Name: green place holder restPath 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2646,7 +2744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a448c830d860e449098f4899eba03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSafe: 0
+  isSafe: 1
 --- !u!1 &5517490242386522541
 GameObject:
   m_ObjectHideFlags: 0
@@ -3022,7 +3120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d8f12b5d98eaa4487a41db88a86ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path:
+  gameOtherPath:
   - {fileID: 5247968591626046870}
   - {fileID: 6094349141439606262}
   - {fileID: 91489116173966753}
@@ -3271,7 +3369,7 @@ GameObject:
   - component: {fileID: 4952474745605481265}
   - component: {fileID: 7633562797546101370}
   m_Layer: 0
-  m_Name: place holder (2)
+  m_Name: red place holder restPath 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3406,7 +3504,7 @@ GameObject:
   - component: {fileID: 3903171419962426771}
   - component: {fileID: 6151296655578064651}
   m_Layer: 0
-  m_Name: place holder (2)
+  m_Name: yellow place holder restPath 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3938,7 +4036,7 @@ GameObject:
   - component: {fileID: 2635788343926636803}
   - component: {fileID: 8654554378637193395}
   m_Layer: 0
-  m_Name: place holder
+  m_Name: blue place holder restPath 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4110,7 +4208,7 @@ GameObject:
   - component: {fileID: 5115238843150661225}
   - component: {fileID: 5750941097347163554}
   m_Layer: 0
-  m_Name: place holder (3)
+  m_Name: yellow place holder restPath 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4200,7 +4298,7 @@ GameObject:
   - component: {fileID: 3545380433479373405}
   - component: {fileID: 3914672160920208366}
   m_Layer: 0
-  m_Name: place holder (2)
+  m_Name: green place holder restPath 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4283,19 +4381,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e4ab465689c1dc43bd8c4f1027ac0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spanIndex: 41
-  endIndex: 0
-  InsideOffest: -2
-  localPosition: 0
+  ludogame: {fileID: 0}
+  color: {r: 0.8117648, g: 0.7725491, b: 0.003921569, a: 1}
   restPath1: {fileID: 8247840344703508395}
   restPath2: {fileID: 6151296655578064651}
   restPath3: {fileID: 1278464781068143541}
   restPath4: {fileID: 5750941097347163554}
-  pawn1: {fileID: 0}
-  pawn2: {fileID: 0}
-  pawn3: {fileID: 0}
-  pawn4: {fileID: 0}
-  color: {r: 0.8117648, g: 0.7725491, b: 0.003921569, a: 1}
   ludoGamePlayerData:
     userName: 
     diceData:
@@ -4305,17 +4396,16 @@ MonoBehaviour:
       value: 0
     pawnInfo1:
       pawnState: 0
-      pos: 0
+      step: 0
     pawnInfo2:
       pawnState: 0
-      pos: 0
+      step: 0
     pawnInfo3:
       pawnState: 0
-      pos: 0
+      step: 0
     pawnInfo4:
       pawnState: 0
-      pos: 0
-  ludogame: {fileID: 0}
+      step: 0
   innerPath:
   - {fileID: 8284224814426415428}
   - {fileID: 8566831902369720790}
@@ -4323,7 +4413,64 @@ MonoBehaviour:
   - {fileID: 2468152940105543115}
   - {fileID: 7790567221275057843}
   - {fileID: 8690614928927226096}
-  list: []
+  placeHolderpath:
+  - {fileID: 5455255990821598481}
+  - {fileID: 6234140670822296341}
+  - {fileID: 2059142847353953521}
+  - {fileID: 4068171522702166034}
+  - {fileID: 8306337752566885739}
+  - {fileID: 8359092344271469747}
+  - {fileID: 5972608633412614992}
+  - {fileID: 5474159366718030295}
+  - {fileID: 6876675921993168071}
+  - {fileID: 8501026494530080902}
+  - {fileID: 8381784459519518803}
+  - {fileID: 5247968591626046870}
+  - {fileID: 6094349141439606262}
+  - {fileID: 91489116173966753}
+  - {fileID: 4399558655362388176}
+  - {fileID: 1971664227277800969}
+  - {fileID: 7701432014500294446}
+  - {fileID: 1112905051465434946}
+  - {fileID: 2400355794154970731}
+  - {fileID: 5917616700432275135}
+  - {fileID: 5248236559989175368}
+  - {fileID: 2445918341558414281}
+  - {fileID: 4181281725705943177}
+  - {fileID: 5361705067001662252}
+  - {fileID: 7774257814529379424}
+  - {fileID: 4488310732963965550}
+  - {fileID: 563031874607068150}
+  - {fileID: 5855304514868343208}
+  - {fileID: 3170769602751453202}
+  - {fileID: 1619061324408136299}
+  - {fileID: 7382828619751123279}
+  - {fileID: 4455858704176596923}
+  - {fileID: 789825467487625849}
+  - {fileID: 4871510861681200076}
+  - {fileID: 8747158490446091831}
+  - {fileID: 5468460320352010883}
+  - {fileID: 8199574640551293237}
+  - {fileID: 6137444141308988224}
+  - {fileID: 8548191389837355507}
+  - {fileID: 4099461971490418748}
+  - {fileID: 6527958818366059099}
+  - {fileID: 5181687045542811344}
+  - {fileID: 630881955480386541}
+  - {fileID: 2791301037152945136}
+  - {fileID: 1275676332172865600}
+  - {fileID: 2258619247731535556}
+  - {fileID: 1290764701126127292}
+  - {fileID: 569864944542976882}
+  - {fileID: 4603938296988049047}
+  - {fileID: 190674246055499136}
+  - {fileID: 3304424841399273776}
+  - {fileID: 8284224814426415428}
+  - {fileID: 8566831902369720790}
+  - {fileID: 2236522624486912809}
+  - {fileID: 2468152940105543115}
+  - {fileID: 7790567221275057843}
+  - {fileID: 8690614928927226096}
 --- !u!1 &8383894798167968216
 GameObject:
   m_ObjectHideFlags: 0
@@ -4373,19 +4520,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e4ab465689c1dc43bd8c4f1027ac0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spanIndex: 2
-  endIndex: 0
-  InsideOffest: -2
-  localPosition: 0
+  ludogame: {fileID: 5216492144176955448}
+  color: {r: 0.003921569, g: 0.6392157, b: 0.81568635, a: 1}
   restPath1: {fileID: 8654554378637193395}
   restPath2: {fileID: 675005969105028380}
   restPath3: {fileID: 3316543460670889878}
   restPath4: {fileID: 6009145314461185751}
-  pawn1: {fileID: 0}
-  pawn2: {fileID: 0}
-  pawn3: {fileID: 0}
-  pawn4: {fileID: 0}
-  color: {r: 0.003921569, g: 0.6392157, b: 0.81568635, a: 1}
   ludoGamePlayerData:
     userName: 
     diceData:
@@ -4395,17 +4535,16 @@ MonoBehaviour:
       value: 0
     pawnInfo1:
       pawnState: 0
-      pos: 0
+      step: 0
     pawnInfo2:
       pawnState: 0
-      pos: 0
+      step: 0
     pawnInfo3:
       pawnState: 0
-      pos: 0
+      step: 0
     pawnInfo4:
       pawnState: 0
-      pos: 0
-  ludogame: {fileID: 0}
+      step: 0
   innerPath:
   - {fileID: 3494570000706469556}
   - {fileID: 7152745897957818575}
@@ -4413,7 +4552,64 @@ MonoBehaviour:
   - {fileID: 2077803167621717330}
   - {fileID: 2999269965672645830}
   - {fileID: 4607192859156188053}
-  list: []
+  placeHolderpath:
+  - {fileID: 91489116173966753}
+  - {fileID: 4399558655362388176}
+  - {fileID: 1971664227277800969}
+  - {fileID: 7701432014500294446}
+  - {fileID: 1112905051465434946}
+  - {fileID: 2400355794154970731}
+  - {fileID: 5917616700432275135}
+  - {fileID: 5248236559989175368}
+  - {fileID: 2445918341558414281}
+  - {fileID: 4181281725705943177}
+  - {fileID: 5361705067001662252}
+  - {fileID: 7774257814529379424}
+  - {fileID: 4488310732963965550}
+  - {fileID: 563031874607068150}
+  - {fileID: 5855304514868343208}
+  - {fileID: 3170769602751453202}
+  - {fileID: 1619061324408136299}
+  - {fileID: 7382828619751123279}
+  - {fileID: 4455858704176596923}
+  - {fileID: 789825467487625849}
+  - {fileID: 4871510861681200076}
+  - {fileID: 8747158490446091831}
+  - {fileID: 5468460320352010883}
+  - {fileID: 8199574640551293237}
+  - {fileID: 6137444141308988224}
+  - {fileID: 8548191389837355507}
+  - {fileID: 4099461971490418748}
+  - {fileID: 6527958818366059099}
+  - {fileID: 5181687045542811344}
+  - {fileID: 630881955480386541}
+  - {fileID: 2791301037152945136}
+  - {fileID: 1275676332172865600}
+  - {fileID: 2258619247731535556}
+  - {fileID: 1290764701126127292}
+  - {fileID: 569864944542976882}
+  - {fileID: 4603938296988049047}
+  - {fileID: 190674246055499136}
+  - {fileID: 3304424841399273776}
+  - {fileID: 2706675106963970624}
+  - {fileID: 5455255990821598481}
+  - {fileID: 6234140670822296341}
+  - {fileID: 2059142847353953521}
+  - {fileID: 4068171522702166034}
+  - {fileID: 8306337752566885739}
+  - {fileID: 8359092344271469747}
+  - {fileID: 5972608633412614992}
+  - {fileID: 5474159366718030295}
+  - {fileID: 6876675921993168071}
+  - {fileID: 8501026494530080902}
+  - {fileID: 8381784459519518803}
+  - {fileID: 5247968591626046870}
+  - {fileID: 3494570000706469556}
+  - {fileID: 7152745897957818575}
+  - {fileID: 1872047950868448323}
+  - {fileID: 2077803167621717330}
+  - {fileID: 2999269965672645830}
+  - {fileID: 4607192859156188053}
 --- !u!1 &8394673369107314647
 GameObject:
   m_ObjectHideFlags: 0
@@ -4548,7 +4744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a448c830d860e449098f4899eba03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSafe: 0
+  isSafe: 1
 --- !u!1 &8494347085819641460
 GameObject:
   m_ObjectHideFlags: 0
@@ -4593,7 +4789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a448c830d860e449098f4899eba03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSafe: 0
+  isSafe: 1
 --- !u!1 &8810349200933251474
 GameObject:
   m_ObjectHideFlags: 0
@@ -4688,7 +4884,7 @@ GameObject:
   - component: {fileID: 6068977216734752740}
   - component: {fileID: 353277842367313158}
   m_Layer: 0
-  m_Name: place holder
+  m_Name: green place holder restPath 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4778,7 +4974,7 @@ GameObject:
   - component: {fileID: 3840290452574603393}
   - component: {fileID: 6009145314461185751}
   m_Layer: 0
-  m_Name: place holder (3)
+  m_Name: blue place holder restPath 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4868,7 +5064,7 @@ GameObject:
   - component: {fileID: 5659996228316270961}
   - component: {fileID: 1278464781068143541}
   m_Layer: 0
-  m_Name: place holder (1)
+  m_Name: yellow place holder restPath 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

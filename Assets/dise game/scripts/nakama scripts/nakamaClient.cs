@@ -196,7 +196,6 @@ public class nakamaClient : MonoBehaviour
             {
                 match = null;
             }
-
         }
         autoMatchWindow.gameObject.SetActive(match!=null|| matchmakerTicket != null);
         if (account != null)

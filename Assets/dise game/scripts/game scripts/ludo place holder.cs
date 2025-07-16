@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,52 +6,38 @@ using UnityEngine.UIElements;
 
 public class ludoplaceholder : MonoBehaviour
 {
-    public int spanIndex;
-    public int endIndex;
-    public int InsideOffest=-2;
-    public int localPosition;
+    public ludogame ludogame;
+    public Color color;
 
     public path restPath1;
     public path restPath2;
     public path restPath3;
     public path restPath4;
 
-    public pawn pawn1;
-    public pawn pawn2;
-    public pawn pawn3;
-    public pawn pawn4;
+    [NonSerialized] public pawn pawn1;
+    [NonSerialized] public pawn pawn2;
+    [NonSerialized] public pawn pawn3;
+    [NonSerialized] public pawn pawn4;
 
-    public Color color;
     public ludoGamePlayerData ludoGamePlayerData;
-    public ludogame ludogame;
     public Action<pawn> onPawnMoved;
-
+    [Header("path")]
     public List<path> innerPath;
-    public List<path> list = new List<path>();
-    public List<path> mainPath
+    public List<path> placeHolderpath = new List<path>();
+    public GameObject noSignal;
+    public void setSignal(bool signal)
     {
-        get
+        if (noSignal)
         {
-            if (ludogame)
-            {
-                list.Clear();
-                var paths= ludogame.path;
-                var startIndex = spanIndex;
-                endIndex = spanIndex + InsideOffest;
-                list.AddRange(paths.GetRange(startIndex, (paths.Count - startIndex)));
-                if (endIndex+1 > 0)
-                {
-                    list.AddRange(paths.GetRange(0, endIndex+1));
-                }
-                list.AddRange(innerPath);
-            }
-            return list;
+            noSignal.SetActive(signal);
         }
+
     }
     //K 128
     //spans pawns
     public void spanPawns(ludogame ludogame)
     {
+
         this.ludogame = ludogame;
         var pawnsGameObject = transform.Find("pawns");
         if (pawnsGameObject == null)
@@ -65,6 +52,7 @@ public class ludoplaceholder : MonoBehaviour
         span1.transform.position = restPath1.position;
         pawn1 = span1.GetComponent<pawn>();
         pawn1.go(this, restPath1, 1);
+        
 
         var span2 = Instantiate(pawnPrefab.gameObject, pawnsGameObject);
         span2.transform.position = restPath2.position;
@@ -81,11 +69,37 @@ public class ludoplaceholder : MonoBehaviour
         pawn4 = span4.GetComponent<pawn>();
         pawn4.go(this, restPath4, 4);
 
-        var d= mainPath;
 
     }
+    public void setPawnsScale(float scale)
+    {
+        var ludoBordRectTransofrm = ludogame.GetComponent<RectTransform>();
+        if (ludoBordRectTransofrm)
+        {
+            var boardSizeDelta = ludoBordRectTransofrm.sizeDelta;
+            if (pawn1)
+            {
+                var pawn1RectTransofrm = pawn1.GetComponent<RectTransform>();
+                pawn1RectTransofrm.sizeDelta = boardSizeDelta*scale;
+            }
+            if (pawn1)
+            {
+                var pawn2RectTransofrm = pawn2.GetComponent<RectTransform>();
+                pawn2RectTransofrm.sizeDelta = boardSizeDelta * scale;
+            }
+            if (pawn1)
+            {
+                var pawn3RectTransofrm = pawn3.GetComponent<RectTransform>();
+                pawn3RectTransofrm.sizeDelta = boardSizeDelta * scale;
+            }
+            if (pawn1)
+            {
+                var pawn4RectTransofrm = pawn4.GetComponent<RectTransform>();
+                pawn4RectTransofrm.sizeDelta = boardSizeDelta * scale;
+            }
+        }
 
-    #region update
+    }
     public void updatepawnData(ludoGamePlayerData newLudoGamePlayerData)
     {
         pawn1.setValues(newLudoGamePlayerData.pawnInfo1);
@@ -93,28 +107,27 @@ public class ludoplaceholder : MonoBehaviour
         pawn3.setValues(newLudoGamePlayerData.pawnInfo3);
         pawn4.setValues(newLudoGamePlayerData.pawnInfo4);
     }
-
-    #endregion
-
     #region selecting
     //get new positions
-    public int totalSteps
+    public int totalStepsCount
     {
-        get { return list.Count; }
+        get { return placeHolderpath.Count; }
     }
-
     public int totalInnerSteps
     {
         get { return innerPath.Count; }
     }
 
+    public void Start()
+    {
+    }
     public bool canPawnMove(pawn pawn, int number, bool applyValue = false)
     {
         var valied = false;
         if (pawn)
         {
             var pawnInfo = pawn.pawnInfo;
-            int playerCurrentSteps = pawnInfo.pos;
+            int playerCurrentStep = pawnInfo.step;
             var pawnState = pawnInfo.pawnState;
             switch (pawnState)
             {
@@ -123,19 +136,28 @@ public class ludoplaceholder : MonoBehaviour
                     {
                         if (applyValue)
                         {
-                            pawn.setValues(pawnState.alive,1);
+                            pawn.setValues(pawnState.alive,0);
                         }
                         valied = true;
                     }
                     break;
                 case pawnState.alive:
-                    var targateSteps = number + playerCurrentSteps;
-                    if (targateSteps <= totalSteps)
+                    var targateSteps = number + playerCurrentStep;
+                    if (targateSteps < totalStepsCount)
                     {
                         // in range
+                        bool isCompleted = (targateSteps == (totalStepsCount-1));
+
                         if (applyValue)
                         {
-                            pawn.setPos(targateSteps);
+                            if (isCompleted)
+                            {
+                                pawn.setValues(pawnState.complected,targateSteps);
+                            }
+                            else
+                            {
+                                pawn.setPos(targateSteps);
+                            }
                         }
                         valied = true;
                     }
@@ -179,13 +201,6 @@ public class ludoplaceholder : MonoBehaviour
         }
         return pawns;
     }
-    public void selectValiedPawns(int number)
-    {
-        pawn1.movebul = (canPawnMove(pawn1, number));
-        pawn2.movebul = (canPawnMove(pawn2, number));
-        pawn3.movebul = (canPawnMove(pawn3, number));
-        pawn4.movebul = (canPawnMove(pawn4, number));
-    }
     public void disSelectAllPawns()
     {
         pawn1.movebul = false;
@@ -193,13 +208,13 @@ public class ludoplaceholder : MonoBehaviour
         pawn3.movebul = false;
         pawn4.movebul = false;
     }
-
     //after mouse selected
-    public void pawnSelected(pawn pawn)
+    public bool movePawn(pawn pawn)
     {
+        var moved = false;
         if (ludogame.dice.diceData.isMyTurn && ludogame.dice.diceData.isSelecting)
         {
-            var moved = canPawnMove(pawn, ludogame.dice.diceData.value, true);
+            moved = canPawnMove(pawn, ludogame.dice.diceData.value, true);
             if (moved)
             {
                 onPawnMoved?.Invoke(pawn);
@@ -210,11 +225,14 @@ public class ludoplaceholder : MonoBehaviour
         {
             disSelectAllPawns();
         }
+        return moved;
     }
 
+    public bool isAllPawnsCompleted()
+    {
+        return ludoGamePlayerData.isWin();
+    }
     #endregion
-
-
     public List<pawn> getAllPawns()
     {
         var list = new List<pawn>();
